@@ -10,12 +10,16 @@ This lab introduces the concept of **Infrastructure as Code (IaC)** and demonstr
 
 Infrastructure as Code (IaC) allows you to **define, provision, and manage infrastructure using code** instead of manual configuration through a web console.  
 This approach ensures that your environments are **consistent, repeatable, and version-controlled** — just like your application source code.
+![IMG_0002](https://github.com/user-attachments/assets/ce4e0050-8f0a-4e7c-8f19-2c3bb4bbf58b)
+
 
 ---
 
 ## Why Use Infrastructure as Code?
 
-You could log in to the Azure (or any cloud) portal and create resources manually — click, drag, drop.  
+You could log in to the Azure (or any cloud) portal and create resources manually — click, drag, drop.
+![IMG_0003](https://github.com/user-attachments/assets/427a49e3-e30a-4863-9a12-e1f3adf73727)
+
 That’s fine for small, personal setups. But in real-world scenarios:
 
 | Scenario | Manual Setup Time | IaC Setup Time |
@@ -23,18 +27,20 @@ That’s fine for small, personal setups. But in real-world scenarios:
 | Deploy a 3-tier app | ~2 hours | A few minutes |
 | Four environments (dev, test, stage, prod) | ~8 hours | Reusable code |
 | Hundreds of servers | Not scalable | Automated provisioning |
+![IMG_0004](https://github.com/user-attachments/assets/b9375b48-80b3-4119-884b-d1bd912a9c23)
 
 Challenges with manual provisioning:
 - Cost control (idle resources running overnight)
 - Environment drift (“works on my machine”)
 - Human error and inconsistent configuration
 - No automated cleanup or reusability
+![IMG_0006](https://github.com/user-attachments/assets/21549f34-a10f-4778-b2dd-19eede84681d)
 
 With IaC, you can:
 - **Automate** provisioning and teardown  
 - **Reuse** configurations across environments  
 - **Version-control** changes  
-- **Standardize** deployments across teams  
+- **Standardize** deployments across teams 
 
 ---
 
@@ -48,6 +54,7 @@ Developers can focus on applications
 Reduced configuration errors  
 Automated cleanup and destruction  
 Easier troubleshooting with reproducible setups  
+![IMG_0007](https://github.com/user-attachments/assets/72d008d1-82eb-4aad-aaca-addd1d20aa6f)
 
 ---
 
@@ -66,6 +73,7 @@ It enables you to describe your infrastructure using declarative configuration f
 4. **Plan** to preview what Terraform will create, update, or delete  
 5. **Apply** changes by calling the target cloud provider’s API  
 6. **Destroy** infrastructure when no longer needed  
+![IMG_0008](https://github.com/user-attachments/assets/3b8cddf0-66cd-436c-a0ae-e2ef51b00613)
 
 ---
 
