@@ -27,7 +27,10 @@ That’s fine for small, personal setups. But in real-world scenarios:
 | Deploy a 3-tier app | ~2 hours | A few minutes |
 | Four environments (dev, test, stage, prod) | ~8 hours | Reusable code |
 | Hundreds of servers | Not scalable | Automated provisioning |
-![IMG_0004](https://github.com/user-attachments/assets/b9375b48-80b3-4119-884b-d1bd912a9c23)
+
+
+![IMG_0004](https://github.com/user-attachments/assets/04f6fb0e-5200-4026-a629-b48aeac8c9ea)
+
 
 Challenges with manual provisioning:
 - Cost control (idle resources running overnight)
