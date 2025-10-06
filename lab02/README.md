@@ -1,12 +1,12 @@
-# 🧩 Lab 02 – Understanding Terraform Providers
+# Lab 02 – Understanding Terraform Providers
 
-## 🧠 Overview
+## Overview
 
 In this lab, you’ll explore **Terraform Providers** — the building blocks that let Terraform talk to cloud platforms and external services. You’ll learn what providers are, how versioning works, and why version constraints matter for reliable automation.
 
 ---
 
-## 🔍 What is a Terraform Provider?
+## What is a Terraform Provider?
 
 A **provider** in Terraform is a **plugin** that lets Terraform communicate with a service’s **API**. Each provider exposes resources and data sources for that service.
 
@@ -20,7 +20,7 @@ Terraform uses providers to **translate HCL into real API calls** that create/ma
 
 ---
 
-## 🧩 Provider Structure Example
+## Provider Structure Example
 
 ```hcl
 terraform {
@@ -44,7 +44,7 @@ provider "azurerm" {
 
 ---
 
-## ⚙️ Provider Version vs Terraform Core Version
+## Provider Version vs Terraform Core Version
 
 Terraform has two separate version tracks:
 
@@ -57,7 +57,7 @@ They evolve independently. Compatibility depends on both versions.
 
 ---
 
-## 🧮 Why Provider Versioning Matters
+## Why Provider Versioning Matters
 
 Pinning provider versions ensures **stability and reproducibility**. Without constraints, auto-upgrades can:
 - Introduce breaking changes  
@@ -68,7 +68,7 @@ Locking versions keeps behavior consistent across machines and time.
 
 ---
 
-## 🔐 Version Constraints and Operators
+## Version Constraints and Operators
 
 | Operator | Example       | Meaning                                         |
 |---------:|---------------|-------------------------------------------------|
@@ -84,7 +84,7 @@ Locking versions keeps behavior consistent across machines and time.
 
 ---
 
-## 🧭 Summary
+## Summary
 
 After **Lab 02**, you should understand:
 - What providers are and how they interact with APIs  
@@ -93,6 +93,6 @@ After **Lab 02**, you should understand:
 
 ---
 
-## 📊 Optional Diagram
+## Optional Diagram
 
 Add a diagram (e.g., `terraform ↔ provider ↔ cloud API`) as `diagram.png` or `diagram.mmd` and link it here.
