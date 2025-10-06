@@ -8,6 +8,8 @@ In this lab, you’ll explore **Terraform Providers** — the building blocks th
 
 ## What is a Terraform Provider?
 
+![IMG_9997](https://github.com/user-attachments/assets/4402866b-4368-43a5-a550-77f0c10e6b0d)
+
 A **provider** in Terraform is a **plugin** that lets Terraform communicate with a service’s **API**. Each provider exposes resources and data sources for that service.
 
 Examples:
@@ -59,6 +61,9 @@ They evolve independently. Compatibility depends on both versions.
 
 ## Why Provider Versioning Matters
 
+![IMG_9999](https://github.com/user-attachments/assets/f010206c-78a2-40e8-8caa-e193bb153f8d)
+
+
 Pinning provider versions ensures **stability and reproducibility**. Without constraints, auto-upgrades can:
 - Introduce breaking changes  
 - Alter resource behavior  
@@ -92,7 +97,3 @@ After **Lab 02**, you should understand:
 - Why and how to constrain provider versions
 
 ---
-
-## Optional Diagram
-
-Add a diagram (e.g., `terraform ↔ provider ↔ cloud API`) as `diagram.png` or `diagram.mmd` and link it here.
