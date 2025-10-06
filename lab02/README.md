@@ -79,6 +79,9 @@ Locking versions keeps behavior consistent across machines and time.
 
 ## Version Constraints and Operators
 
+<img width="964" height="618" alt="image" src="https://github.com/user-attachments/assets/fdecd926-7fbe-4911-9462-98965e043aea" />
+
+
 | Operator | Example       | Meaning                                         |
 |---------:|---------------|-------------------------------------------------|
 | `=`      | `= 4.2.0`     | Exactly version 4.2.0                           |
