@@ -29,9 +29,10 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.0"
+      version = "~> 4.46.0"
     }
   }
+  required_version = ">= 1.13.1"
 }
 
 provider "azurerm" {
@@ -43,6 +44,9 @@ provider "azurerm" {
 - **source**: origin (HashiCorp, community, custom)  
 - **version**: which version to install  
 - **provider block**: provider-specific settings (e.g., credentials, region)
+- **required_version** — Specifies the **minimum Terraform CLI version** required to run this configuration.  
+  - This ensures that team members use a **compatible Terraform Core version**.  
+  - Example: `>= 1.13.1` means any Terraform version **1.13.1 or newer** is acceptable.
 
 ---
 
