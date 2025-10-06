@@ -1,60 +1,64 @@
-# Lab 03 – Terraform Azure Provider: Resource Group & Storage Account
+# Lab 03 – Azure Authentication, Resource Group & Storage Account with Terraform
 
 ## Overview
 
-In this lab, you’ll use the **Terraform AzureRM provider** to create two fundamental Azure resources:
-- A **Resource Group**
-- A **Storage Account**
+In this lab, you’ll explore **how Terraform authenticates and authorizes access to Azure**, and how to use the **AzureRM provider** to create foundational Azure resources — a **Resource Group** and a **Storage Account**.
 
-You’ll also learn how to authenticate Terraform with Azure using a **Service Principal** and environment variables — a best practice for secure automation.
+You’ll also learn about **resource dependencies** and how Terraform automatically handles them during provisioning.
 
 ---
 
-## Step 1: Explore the Terraform AzureRM Provider
+## Learning Objectives
 
-Before writing code, get familiar with the official provider documentation:
+By the end of **Lab 03**, you will understand:
+
+- **Authentication and Authorization** with Azure using a Service Principal  
+- How to create a **Resource Group** with Terraform  
+- How to manage a **Storage Account** declaratively  
+- How Terraform automatically manages **resource dependencies**  
+- How to write clean, modular Terraform **code samples**
+
+---
+
+## Step 1: Review AzureRM Provider Documentation
+
+Start by exploring the official Terraform provider documentation:
 
 🔗 [Terraform Registry – AzureRM Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest)
 
-The documentation lists:
-- Supported resources and data sources  
-- Argument references  
-- Usage examples  
-- Version requirements  
-
-Understanding this documentation is key to writing clean, reusable Terraform code.
+It explains:
+- Resource definitions (e.g., `azurerm_resource_group`, `azurerm_storage_account`)  
+- Arguments and attributes for each resource  
+- Authentication options  
+- Version compatibility  
 
 ---
 
-## Step 2: Log in to Azure
+## Step 2: Authentication and Authorization
 
-First, authenticate to Azure using the CLI:
+Terraform uses Azure credentials to perform actions via the **Azure Resource Manager (ARM) API**.  
+The recommended authentication method is a **Service Principal (SP)**.
+
+### Log in to Azure
 
 ```bash
 az login
 ```
 
-This opens a browser window for your Azure account authentication and displays subscription details in the terminal.
+### Create a Service Principal
 
----
-
-## Step 3: Create a Service Principal
-
-Terraform uses Azure credentials to deploy infrastructure.  
-A **Service Principal (SP)** provides programmatic access to Azure resources without relying on your personal login.
-
-Run the following command to create one:
+Run the following command (replace `$SUBSCRIPTION_ID` with your actual ID):
 
 ```bash
 az ad sp create-for-rbac -n az-demo --role="Contributor" --scopes="/subscriptions/$SUBSCRIPTION_ID"
 ```
 
 This command:
-- Creates a Service Principal named `az-demo`
-- Assigns the **Contributor** role
-- Scopes permissions to your specific Azure subscription
+- Creates a Service Principal named **az-demo**
+- Assigns it the **Contributor** role
+- Limits its scope to your subscription
 
-After running it, Azure will return output similar to:
+Azure will output JSON containing credentials:
 
 ```json
 {
@@ -67,10 +71,9 @@ After running it, Azure will return output similar to:
 
 ---
 
-## Step 4: Set Environment Variables
+## Step 3: Set Environment Variables
 
-Terraform reads Azure credentials from environment variables.  
-Use the values generated from the previous step to set them:
+To authenticate Terraform securely, export the Service Principal credentials as environment variables:
 
 ```bash
 export ARM_CLIENT_ID="<appId>"
@@ -79,17 +82,13 @@ export ARM_SUBSCRIPTION_ID="<subscriptionId>"
 export ARM_TENANT_ID="<tenant>"
 ```
 
-✅ These exports ensure that Terraform can authenticate to Azure using your Service Principal securely — without embedding credentials in configuration files.
-
-> **Tip:** You can add these exports to a `.env` or `terraform.auto.tfvars` file (excluded via `.gitignore`) for easier reuse.
+✅ This prevents credentials from being hardcoded into Terraform files and enables non-interactive authentication for CI/CD or automation pipelines.
 
 ---
 
-## Step 5: Create Terraform Configuration
+## Step 4: Terraform Configuration – Code Sample
 
-Once authenticated, create your Terraform configuration file (e.g., `main.tf`) to define Azure resources.
-
-Example:
+Below is the Terraform configuration used in this lab:
 
 ```hcl
 terraform {
@@ -106,13 +105,17 @@ provider "azurerm" {
   features {}
 }
 
-# Create Resource Group
+# ---------------------------
+# Resource Group
+# ---------------------------
 resource "azurerm_resource_group" "demo_rg" {
   name     = "rg-terraform-demo"
   location = "West Europe"
 }
 
-# Create Storage Account
+# ---------------------------
+# Storage Account
+# ---------------------------
 resource "azurerm_storage_account" "demo_sa" {
   name                     = "tfstoragedemo001"
   resource_group_name      = azurerm_resource_group.demo_rg.name
@@ -124,9 +127,23 @@ resource "azurerm_storage_account" "demo_sa" {
 
 ---
 
-## Step 6: Run Terraform Commands
+## Step 5: Understanding Dependencies
 
-Initialize Terraform and deploy the resources:
+Notice how the storage account references:
+
+```hcl
+resource_group_name = azurerm_resource_group.demo_rg.name
+```
+
+Terraform automatically understands this dependency — it will **create the Resource Group first** before the Storage Account.
+
+You don’t need to define dependency rules manually; Terraform’s **dependency graph** handles this automatically.
+
+---
+
+## Step 6: Initialize and Apply
+
+Run the following Terraform workflow:
 
 ```bash
 terraform init
@@ -134,20 +151,26 @@ terraform plan
 terraform apply
 ```
 
-To clean up the resources later:
+Confirm the deployment when prompted.
+
+To clean up:
 
 ```bash
 terraform destroy
 ```
 
+Terraform will remove all resources safely, respecting dependency order.
+
 ---
 
 ## Summary
 
-By completing **Lab 03**, you will have learned how to:
-- Authenticate Terraform with Azure using a Service Principal  
-- Set up environment variables securely  
-- Use the AzureRM provider to create a Resource Group and Storage Account  
-- Apply and destroy Terraform-managed infrastructure  
+In **Lab 03**, you learned how to:
+
+- Authenticate Terraform to Azure with a Service Principal  
+- Use environment variables for secure authorization  
+- Create and manage a Resource Group and Storage Account  
+- Understand and leverage Terraform’s dependency management  
+- Write reusable, declarative Terraform configurations  
 
 ---
