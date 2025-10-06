@@ -29,7 +29,9 @@ Terraform uses this file to:
 - Know what resources already exist  
 - Detect configuration drift  
 - Plan only necessary changes  
-- Support resource destruction in the correct order  
+- Support resource destruction in the correct order
+
+![IMG_0015](https://github.com/user-attachments/assets/35b4270e-dd68-44a8-ad55-66c46eda8441)
 
 Example workflow:
 
@@ -65,6 +67,8 @@ That’s fine for quick demos — but risky in real environments.
 - Prefer **remote backends** for real projects (Azure Blob, AWS S3, Terraform Cloud, etc.)  
 - Enable **state locking** when multiple users or CI/CD pipelines may run Terraform simultaneously  
 - Backup your state regularly
+
+![IMG_0016](https://github.com/user-attachments/assets/6b014983-1396-4531-8d8c-0644cbcfd94e)
 
 ---
 
