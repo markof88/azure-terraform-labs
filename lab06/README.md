@@ -1,4 +1,3 @@
-```markdown
 # Lab 06 – Split Terraform Configuration into Multiple Files
 
 ## Goal
@@ -148,7 +147,3 @@ terraform validate
 terraform plan
 terraform apply
 ```
-
----
-
-````
