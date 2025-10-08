@@ -93,10 +93,10 @@ variable "vm_config" {
     error_message = "vm_config.size must be one of the values in allowed_vm_sizes."
   }
 }
+````
 
-terraform.tfvars – example values
-hcl
-Code kopieren
+## `terraform.tfvars – example values`
+```hcl
 environment       = "demo"
 storage_disk      = 128
 is_delete         = true
@@ -119,11 +119,11 @@ vm_config = {
   sku       = "22_04-lts"
   version   = "latest"
 }
+````
 
-Example Usage in Resources
+## `Example Usage in Resources`
 resource Group – Validate Location
-hcl
-Code kopieren
+```hcl
 locals {
   chosen_location_is_allowed = contains(var.allowed_locations, "Germany West Central")
 }
@@ -143,10 +143,10 @@ resource "azurerm_resource_group" "demo_rg" {
     }
   }
 }
+````
 
-Storage Account – Apply Tags and Environment
-hcl
-Code kopieren
+## `Storage Account – Apply Tags and Environment`
+```hcl
 resource "azurerm_storage_account" "demo_sa" {
   name                     = "tfstoragedemo001"
   resource_group_name      = azurerm_resource_group.demo_rg.name
@@ -158,12 +158,12 @@ resource "azurerm_storage_account" "demo_sa" {
     environment = var.environment
   })
 }
+````
 
-Example (Optional) – Using the vm_config Object
+## `Example (Optional) – Using the vm_config Object`
 For future labs when you add a VM resource:
 
-hcl
-Code kopieren
+```hcl
 locals {
   ssh_port = var.network_config[2]
 }
@@ -176,26 +176,14 @@ locals {
 #   sku       = var.vm_config.sku
 #   version   = var.vm_config.version
 # }
+````
 
-Run Commands
-bash
-Code kopieren
+## `Run Commands`
+```bash
 terraform init
 terraform fmt -recursive
 terraform validate
 terraform plan
+````
 If a wrong type is provided (e.g., a string instead of a number in storage_disk),
 terraform validate or terraform plan will fail — demonstrating type constraints in action.
-
-Summary
-In Lab 07, you learned how to:
-
-Define variables with explicit type constraints
-
-Use complex types (list, map, tuple, object)
-
-Apply validations and preconditions
-
-Merge dynamic tags and validate input data
-
-This is a key Terraform skill for writing reusable, error-resistant configurations.
