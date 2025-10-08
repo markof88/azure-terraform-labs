@@ -118,15 +118,3 @@ foreach_storage_ids = {
   "tfforeachdemo002" = "/subscriptions/.../storageAccounts/tfforeachdemo002"
 }
 ````
-## `Summary`
-In **Lab 08**, you learned how to:
-
-Use count to create multiple resources from a list
-
-Use for_each to iterate over sets or maps
-
-Use for expressions to transform data for outputs
-
-Simplify your Terraform code and avoid repetition
-
-💡 These iteration constructs are fundamental for creating modular and scalable Terraform configurations.
