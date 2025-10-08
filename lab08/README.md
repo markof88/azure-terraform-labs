@@ -97,19 +97,17 @@ output "foreach_storage_ids" {
   value       = { for k, sa in azurerm_storage_account.foreach_demo : k => sa.id }
 }
 ````
-Run Commands
+## `Run Commands`
 ```bash
-Code kopieren
 terraform init
 terraform validate
 terraform plan
 terraform apply -auto-approve
 ````
-Example Output
-text
-Code kopieren
-Outputs:
+## `Example Output`
 
+Outputs:
+```hcl
 count_storage_accounts = [
   "tfcountdemo001",
   "tfcountdemo002"
@@ -119,9 +117,9 @@ foreach_storage_ids = {
   "tfforeachdemo001" = "/subscriptions/.../storageAccounts/tfforeachdemo001"
   "tfforeachdemo002" = "/subscriptions/.../storageAccounts/tfforeachdemo002"
 }
-
-Summary
-In Lab 08, you learned how to:
+````
+## `Summary`
+In **Lab 08**, you learned how to:
 
 Use count to create multiple resources from a list
 
