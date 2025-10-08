@@ -53,7 +53,7 @@ variable "location" {
   type        = string
   default     = "Germany West Central"
 }
-
+````
 main.tf – Using count, for_each, and for
 1️⃣ Create Multiple Storage Accounts Using count
 hcl
