@@ -56,8 +56,7 @@ variable "location" {
 ````
 main.tf – Using count, for_each, and for
 1️⃣ Create Multiple Storage Accounts Using count
-hcl
-Code kopieren
+```hcl
 resource "azurerm_storage_account" "count_demo" {
   count                    = length(var.storage_account_names_list)
   name                     = var.storage_account_names_list[count.index]
@@ -70,9 +69,9 @@ resource "azurerm_storage_account" "count_demo" {
     method = "count"
   }
 }
+````
 2️⃣ Create Multiple Storage Accounts Using for_each
-hcl
-Code kopieren
+```hcl
 resource "azurerm_storage_account" "foreach_demo" {
   for_each                 = var.storage_account_names_set
   name                     = each.value
@@ -85,9 +84,9 @@ resource "azurerm_storage_account" "foreach_demo" {
     method = "for_each"
   }
 }
+````
 3️⃣ Output Storage Account Names and IDs Using a for Loop
-hcl
-Code kopieren
+```hcl
 output "count_storage_accounts" {
   description = "List of storage account names created with count"
   value       = [for sa in azurerm_storage_account.count_demo : sa.name]
@@ -97,15 +96,15 @@ output "foreach_storage_ids" {
   description = "Map of storage account IDs created with for_each"
   value       = { for k, sa in azurerm_storage_account.foreach_demo : k => sa.id }
 }
-
+````
 Run Commands
-bash
+```bash
 Code kopieren
 terraform init
 terraform validate
 terraform plan
 terraform apply -auto-approve
-
+````
 Example Output
 text
 Code kopieren
