@@ -54,7 +54,7 @@ variable "location" {
   default     = "Germany West Central"
 }
 ````
-main.tf – Using count, for_each, and for
+## `main.tf – Using count, for_each, and for`
 1️⃣ Create Multiple Storage Accounts Using count
 ```hcl
 resource "azurerm_storage_account" "count_demo" {
